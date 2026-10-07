@@ -2,13 +2,12 @@
 // D:\laragon\www\BUDGETIN\api\telegram.php
 
 function sendTelegramMessage($text, $chatId = null) {
-    $botToken = '8539028083:AAGUAroMeIwUtOzXkUpsQmeqnZdZj_npLjo';
+    $configFile = __DIR__ . '/config.php';
+    $config = file_exists($configFile) ? (require $configFile) : [];
+    $botToken = $config['telegram']['bot_token'] ?? getenv('TELEGRAM_BOT_TOKEN');
+    
     if (!$chatId) {
-        $chatId = '1157084096'; // default
-    }
-
-    if (empty($botToken)) {
-        return false;
+        $chatId = $config['telegram']['chat_id'] ?? getenv('TELEGRAM_CHAT_ID');
     }
 
     $url = "https://api.telegram.org/bot{$botToken}/sendMessage";

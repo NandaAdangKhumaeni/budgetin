@@ -141,41 +141,19 @@ export default function Transaction() {
       reader.onloadend = async () => {
         try {
           const base64Data = reader.result.split(',')[1];
-          const { GoogleGenAI } = await import('@google/genai');
-          const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-          
-          if (!apiKey) {
-            setIsImporting(false);
-            triggerToast('API Key Gemini belum dipasang di .env!', 'error');
-            return;
-          }
-
-          const ai = new GoogleGenAI({ apiKey: apiKey });
-          
-          const response = await ai.models.generateContent({
-            model: 'gemini-3.8-flash',
-            contents: [
-              {
-                role: 'user',
-                parts: [
-                  {
-                    inlineData: {
-                      data: base64Data,
-                      mimeType: file.type || 'application/pdf'
-                    }
-                  },
-                  { text: 'Analyze this bank statement. Extract all transaction records. Return ONLY a valid JSON array of objects. Each object must have exactly these keys: "date" (string, YYYY-MM-DD), "desc" (string, the description), "amount" (number, positive integer), "type" (string, either "income" or "expense"), "cat" (string, guess the category: "transport", "food", "income", or "other").' }
-                ]
-              }
-            ],
-            config: {
-              temperature: 0.1,
-              responseMimeType: 'application/json',
-            }
+          const proxyUrl = import.meta.env.VITE_API_URL || `http://${window.location.hostname}/BUDGETIN/api`;
+          const proxyRes = await fetch(proxyUrl + '/financial/gemini_proxy.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  base64Data,
+                  mimeType: file.type || 'application/pdf',
+                  prompt: 'Analyze this bank statement. Extract all transaction records. Return ONLY a valid JSON array of objects. Each object must have exactly these keys: "date" (string, YYYY-MM-DD), "desc" (string, the description), "amount" (number, positive integer), "type" (string, either "income" or "expense"), "cat" (string, guess the category: "transport", "food", "income", or "other").'
+              })
           });
-
-          const resultText = response.text;
-          const parsedData = JSON.parse(resultText);
+          const proxyJson = await proxyRes.json();
+          if (proxyJson.error) throw new Error(proxyJson.error);
+          const parsedData = proxyJson.result;
           setImportPreview(parsedData);
           setIsImporting(false);
         } catch (apiErr) {
@@ -228,41 +206,19 @@ export default function Transaction() {
       reader.onloadend = async () => {
         try {
           const base64Data = reader.result.split(',')[1];
-          const { GoogleGenAI } = await import('@google/genai');
-          const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-          
-          if (!apiKey) {
-            setIsScanning(false);
-            triggerToast('API Key Gemini belum diset!', 'error');
-            return;
-          }
-
-          const ai = new GoogleGenAI({ apiKey: apiKey });
-          
-          const response = await ai.models.generateContent({
-            model: 'gemini-3.8-flash',
-            contents: [
-              {
-                role: 'user',
-                parts: [
-                  {
-                    inlineData: {
-                      data: base64Data,
-                      mimeType: file.type || 'image/jpeg'
-                    }
-                  },
-                  { text: 'Analyze this receipt image. Extract the total amount, store name, and guess the category. Return ONLY a valid JSON object with exactly these keys: "amount" (number, the final grand total), "note" (string, the store name followed by a short summary of the main items bought in parentheses, e.g., \"Indomaret (Aqua, Roti)\"), "cat" (string, must be exactly one of: "food", "transport", "groceries", "bills", or "other"). Do not use markdown format blocks like ```json. Return just the raw JSON object.' }
-                ]
-              }
-            ],
-            config: {
-              temperature: 0.1,
-              responseMimeType: 'application/json',
-            }
+          const proxyUrl = import.meta.env.VITE_API_URL || `http://${window.location.hostname}/BUDGETIN/api`;
+          const proxyRes = await fetch(proxyUrl + '/financial/gemini_proxy.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  base64Data,
+                  mimeType: file.type || 'image/jpeg',
+                  prompt: 'Analyze this receipt image. Extract the total amount, store name, and guess the category. Return ONLY a valid JSON object with exactly these keys: "amount" (number, the final grand total), "note" (string, the store name followed by a short summary of the main items bought in parentheses, e.g., \"Indomaret (Aqua, Roti)\"), "cat" (string, must be exactly one of: "food", "transport", "groceries", "bills", or "other"). Do not use markdown format blocks like ```json. Return just the raw JSON object.'
+              })
           });
-
-          const resultText = response.text;
-          const parsedData = JSON.parse(resultText);
+          const proxyJson = await proxyRes.json();
+          if (proxyJson.error) throw new Error(proxyJson.error);
+          const parsedData = proxyJson.result;
           
           setFormData({
             amount: String(parsedData.amount),
