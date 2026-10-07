@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Login - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                B
+            </div>
+
+            <div class="login-header">
+
+                <p id="authEyebrow">Selamat datang kembali 👋</p>
+
+                <h1 id="authTitle">Masuk ke Budgetin</h1>
+
+                <span id="authSubtitle">
+                    Kelola keuanganmu dengan lebih mudah.
+                </span>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="login-field">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="nama@email.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="login-field">
+
+                    <label>Password</label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Masukkan password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('loginPassword')"
+                            class="password-toggle"
+                            aria-label="Tampilkan atau sembunyikan password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-field auth-register-only" hidden>
+
+                    <label>Konfirmasi Password</label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Ulangi password"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('confirmPassword')"
+                            class="password-toggle"
+                            aria-label="Tampilkan atau sembunyikan password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberLogin"
+                        >
+
+                        <span>Ingat saya</span>
+
+                    </label>
+
+                    <a href="#" id="forgotPasswordLink">
+                        Lupa password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    <span id="authSubmitLabel">Masuk</span>
+                </button>
+
+            </form>
+
+
+            <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+
+
+            <p class="register-text">
+
+                <span id="authSwitchText">Belum punya akun?</span>
+
+                <a href="#" id="authSwitch">
+                    Daftar sekarang
+                </a>
+
+            </p>
+
+        </div>
+
+
+        <p class="login-footer">
+            © 2026 Budgetin · Catatan Keuangan
+        </p>
+
+    </div>
+
+
+    <script src="login.js?v=3"></script>
+
+</body>
+
+</html>

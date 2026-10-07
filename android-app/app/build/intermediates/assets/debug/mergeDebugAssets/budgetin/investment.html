@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Investasi - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="desktop-sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                B
+            </div>
+
+            <div>
+                <strong>Budgetin</strong>
+                <small>Financial Manager</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="sidebar-item"
+            >
+
+                <span>⌂</span>
+
+                <div>
+
+                    <strong>Home</strong>
+
+                    <small>
+                        Dashboard
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- TRANSAKSI -->
+
+            <a
+                href="transaction.html"
+                class="sidebar-item"
+            >
+
+                <span>↕</span>
+
+                <div>
+
+                    <strong>Transaksi</strong>
+
+                    <small>
+                        Catatan keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- TARGET -->
+
+            <a
+                href="target.html"
+                class="sidebar-item"
+            >
+
+                <span>🎯</span>
+
+                <div>
+
+                    <strong>Target</strong>
+
+                    <small>
+                        Tabungan & tujuan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- REKENING -->
+
+            <a
+                href="bank.html"
+                class="sidebar-item"
+            >
+
+                <span>🏦</span>
+
+                <div>
+
+                    <strong>Rekening</strong>
+
+                    <small>
+                        Kelola rekening
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- INVESTASI -->
+
+            <a
+                href="investment.html"
+                class="sidebar-item active"
+            >
+
+                <span>📈</span>
+
+                <div>
+
+                    <strong>Investasi</strong>
+
+                    <small>
+                        Portfolio investasi
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- LAPORAN -->
+
+            <a
+                href="report.html"
+                class="sidebar-item"
+            >
+
+                <span>📊</span>
+
+                <div>
+
+                    <strong>Laporan</strong>
+
+                    <small>
+                        Analisis keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="sidebar-user">
+
+                <div class="sidebar-avatar">
+                    N
+                </div>
+
+                <div>
+
+                    <strong>Nan</strong>
+
+                    <small>
+                        Personal Account
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="sidebar-logout"
+                onclick="logoutBudgetin()"
+            >
+
+                🚪 Keluar
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+
+        <div class="header-left">
+
+
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                type="button"
+                onclick="toggleSidebar()"
+                aria-label="Toggle sidebar"
+            >
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="greeting">
+                    Portfolio 📈
+                </p>
+
+                <h1>
+                    Investasi
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="profile">
+            N
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <!-- TOTAL INVESTASI -->
+
+        <section class="investment-summary">
+
+            <p>
+                Total Investasi
+            </p>
+
+
+            <h2 id="totalInvestment">
+                Rp 0
+            </h2>
+
+
+            <div class="investment-profit">
+
+
+                <div>
+
+                    <small>
+                        Modal
+                    </small>
+
+                    <strong id="investmentCapital">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Profit / Loss
+                    </small>
+
+                    <strong id="investmentProfit">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PORTFOLIO -->
+
+        <section class="section">
+
+
+            <div class="section-title">
+
+
+                <h2>
+                    📊 Portfolio
+                </h2>
+
+
+                <button
+                    onclick="openInvestmentModal()"
+                >
+
+                    + Tambah
+
+                </button>
+
+
+            </div>
+
+
+            <div id="investmentPortfolio">
+
+
+                <div class="empty-state">
+
+                    Belum ada investasi.
+
+                    <br>
+
+                    Yuk mulai bangun portfolio lu 🚀
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+</div>
+
+
+
+<!-- ================= MODAL INVESTASI ================= -->
+
+<div
+    id="investmentModal"
+    class="modal"
+>
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+
+            <h2>
+                Tambah Investasi
+            </h2>
+
+
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeInvestmentModal()"
+            >
+
+                ×
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- JENIS INVESTASI -->
+
+        <div class="form-group">
+
+            <label>
+                Jenis Investasi
+            </label>
+
+
+            <select id="investmentType">
+
+                <option value="stock">
+                    📈 Saham
+                </option>
+
+                <option value="gold">
+                    🪙 Emas
+                </option>
+
+                <option value="bond">
+                    🏦 Obligasi
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- NAMA / KODE ASET -->
+
+        <div class="form-group">
+
+            <label id="investmentAssetLabel">
+                Kode Saham
+            </label>
+
+
+            <input
+                type="text"
+                id="investmentAsset"
+                placeholder="Contoh: BBCA"
+            >
+
+        </div>
+
+
+
+        <!-- JUMLAH -->
+
+        <div class="form-group">
+
+            <label id="investmentQuantityLabel">
+                Jumlah Saham
+            </label>
+
+
+            <div class="input-unit">
+
+
+                <input
+                    type="number"
+                    id="investmentQuantity"
+                    placeholder="Contoh: 10"
+                    min="0"
+                    step="0.01"
+                >
+
+
+                <span id="investmentUnit">
+                    Lembar
+                </span>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REKENING -->
+
+        <div class="form-group">
+
+            <label>
+                Ambil dari Rekening
+            </label>
+
+
+            <select id="investmentBank">
+
+                <option value="">
+                    Pilih rekening
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- HARGA BELI MANUAL -->
+
+        <div class="form-group">
+
+            <label>
+                Harga Beli per Unit
+            </label>
+
+
+            <input
+                type="number"
+                id="investmentCurrentPrice"
+                placeholder="Contoh: 9000"
+                min="0"
+                step="1"
+                inputmode="decimal"
+            >
+
+            <small class="form-hint">
+                Masukkan harga yang kamu bayar. Harga tidak diambil otomatis dari internet.
+            </small>
+
+        </div>
+
+
+
+        <!-- ESTIMASI NILAI -->
+
+        <div class="form-group">
+
+            <label>
+                Total Pembelian
+            </label>
+
+
+            <div class="auto-value highlight">
+
+                <span id="investmentEstimatedValue">
+                    Rp0
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            class="save-btn"
+            onclick="saveInvestment()"
+        >
+
+            Simpan Investasi
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script src="auth.js"></script>
+<script src="./app.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bank - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="app">
+<!-- SIDEBAR -->
+<aside class="desktop-sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                B
+            </div>
+
+            <div>
+                <strong>Budgetin</strong>
+                <small>Financial Manager</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+
+    <!-- MENU -->
+    <nav class="sidebar-menu">
+
+        <a href="index.html" class="sidebar-item">
+
+            <span>⌂</span>
+
+            <div>
+                <strong>Home</strong>
+                <small>Dashboard</small>
+            </div>
+
+        </a>
+
+
+        <a href="transaction.html" class="sidebar-item">
+
+            <span>↕</span>
+
+            <div>
+                <strong>Transaksi</strong>
+                <small>Catatan keuangan</small>
+            </div>
+
+        </a>
+
+
+        <a href="target.html" class="sidebar-item">
+
+            <span>🎯</span>
+
+            <div>
+                <strong>Target</strong>
+                <small>Tabungan & tujuan</small>
+            </div>
+
+        </a>
+
+
+        <a href="bank.html" class="sidebar-item active">
+
+            <span>🏦</span>
+
+            <div>
+                <strong>Rekening</strong>
+                <small>Kelola rekening</small>
+            </div>
+
+        </a>
+
+
+        <a href="investment.html" class="sidebar-item">
+
+            <span>📈</span>
+
+            <div>
+                <strong>Investasi</strong>
+                <small>Portofolio investasi</small>
+            </div>
+
+        </a>
+
+
+        <a href="report.html" class="sidebar-item">
+
+            <span>📊</span>
+
+            <div>
+                <strong>Laporan</strong>
+                <small>Analisis keuangan</small>
+            </div>
+
+        </a>
+
+    </nav>
+
+
+    <!-- USER -->
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-user">
+
+            <div class="sidebar-avatar">
+                N
+            </div>
+
+            <div>
+                <strong>Nan</strong>
+                <small>Personal Account</small>
+            </div>
+
+        </div>
+
+
+        <button class="sidebar-logout">
+
+            <span>↪</span>
+
+            Keluar
+
+        </button>
+
+    </div>
+
+</aside>
+
+        <!-- HEADER -->
+
+        <header>
+
+            <div>
+
+                <p class="greeting">
+                    Rekening Kamu 🏦
+                </p>
+
+                <h1>
+                    Bank
+                </h1>
+
+            </div>
+
+            <div class="profile">
+                N
+            </div>
+
+        </header>
+
+
+        <main>
+
+            <!-- TOTAL SALDO BANK -->
+
+            <section class="bank-total">
+
+                <small>
+                    Total Saldo Rekening
+                </small>
+
+                <h2 id="bankTotalBalance">
+                    Rp 0
+                </h2>
+
+            </section>
+
+
+            <!-- DAFTAR BANK -->
+
+            <section class="section">
+
+                <div class="section-title">
+
+                    <h2>
+                        Rekening
+                    </h2>
+
+                    <button
+                        onclick="openBankModal()">
+
+                        + Tambah
+
+                    </button>
+
+                </div>
+
+
+                <div id="bankList"></div>
+
+            </section>
+
+        </main>
+
+
+       <!-- BOTTOM NAV -->
+
+        <nav class="bottom-nav">
+
+    <a href="index.html">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="target.html">
+        <span>🎯</span>
+        Target
+    </a>
+
+  <a href="investment.html">
+        <span>📈</span>
+        Investasi
+    </a>
+
+    <a href="bank.html" class="active">
+        <span>🏦</span>
+        Bank
+    </a>
+
+    <a href="transaction.html">
+        <span>↕</span>
+        Transaksi
+    </a>
+
+</nav>
+    </div>
+
+
+    <!-- MODAL BANK -->
+
+    <div
+        class="modal"
+        id="bankModal">
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h2>
+                    Tambah Rekening
+                </h2>
+
+                <button
+                    onclick="closeBankModal()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <label>
+                Nama Bank
+            </label>
+
+
+            <select id="bankName">
+
+                <option value="BCA">
+                    BCA
+                </option>
+
+                <option value="BRI">
+                    BRI
+                </option>
+
+                <option value="BNI">
+                    BNI
+                </option>
+
+                <option value="Mandiri">
+                    Mandiri
+                </option>
+
+                <option value="Jago">
+                    Jago
+                </option>
+
+                <option value="Bank Lainnya">
+                    Bank Lainnya
+                </option>
+
+            </select>
+
+
+            <label>
+                Saldo Awal
+            </label>
+
+
+            <input
+                type="number"
+                id="bankBalance"
+                placeholder="10000000"
+            >
+
+
+            <button
+                class="save-btn"
+                onclick="saveBank()">
+
+                Simpan Rekening
+
+            </button>
+
+
+            <button
+                class="back-btn"
+                onclick="closeBankModal()">
+
+                ← Kembali
+
+            </button>
+
+        </div>
+
+    </div>
+
+    
+    <script src="auth.js"></script>
+    <script src="./app.js"></script>
+
+</body>
+
+</html>

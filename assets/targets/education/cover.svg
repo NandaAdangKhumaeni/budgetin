@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgEdu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="capGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgEdu)"/>
+  <circle cx="390" cy="70" r="100" fill="#818cf8" opacity="0.25"/>
+  <circle cx="80" cy="210" r="80" fill="#4f46e5" opacity="0.35"/>
+
+  <!-- Graduation Cap & Diploma -->
+  <g transform="translate(160, 65)">
+    <!-- Mortarboard Cap Diamond Top -->
+    <polygon points="80,10 160,42 80,74 0,42" fill="#0f172a"/>
+    <polygon points="80,15 150,42 80,69 10,42" fill="#1e1b4b"/>
+
+    <!-- Cap Skull Base -->
+    <path d="M35 55 L35 85 Q80 115 125 85 L125 55 Z" fill="#0f172a"/>
+
+    <!-- Tassel and Button -->
+    <circle cx="80" cy="42" r="6" fill="url(#capGold)"/>
+    <path d="M80 42 Q140 50 148 95" fill="none" stroke="url(#capGold)" stroke-width="4"/>
+    <rect x="142" y="95" width="12" height="24" rx="2" fill="url(#capGold)"/>
+
+    <!-- Rolled Diploma Scroll -->
+    <g transform="translate(20, 110)">
+      <rect x="0" y="0" width="120" height="24" rx="12" fill="#f8fafc"/>
+      <ellipse cx="6" cy="12" rx="4" ry="11" fill="#e2e8f0"/>
+      <rect x="50" y="-3" width="18" height="30" rx="3" fill="#dc2626"/>
+      <!-- Ribbon tail -->
+      <polygon points="52,27 60,38 68,27" fill="#b91c1c"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="122" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="85" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">🎓 Pendidikan</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgWedding" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#831843"/>
+      <stop offset="50%" stop-color="#be185d"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <filter id="ringGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgWedding)"/>
+  <!-- Floating Hearts / Sparkles -->
+  <path d="M90 70 A15 15 0 0 0 60 85 A15 15 0 0 0 90 115 A15 15 0 0 0 120 85 A15 15 0 0 0 90 70 Z" fill="#ffffff" opacity="0.2"/>
+  <circle cx="390" cy="180" r="4" fill="#ffffff" opacity="0.8"/>
+  <circle cx="370" cy="200" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="120" cy="190" r="3" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Twin Interlocking Wedding Rings & Diamond -->
+  <g transform="translate(190, 80)">
+    <!-- First Ring -->
+    <ellipse cx="30" cy="60" rx="42" ry="42" fill="none" stroke="url(#goldRing)" stroke-width="12" filter="url(#ringGlow)"/>
+    <!-- Second Ring -->
+    <ellipse cx="70" cy="50" rx="42" ry="42" fill="none" stroke="url(#goldRing)" stroke-width="12" filter="url(#ringGlow)"/>
+    
+    <!-- Diamond Gem on top ring -->
+    <g transform="translate(68, 5)">
+      <polygon points="2,0 12,-16 -12,-16" fill="#67e8f9" opacity="0.95"/>
+      <polygon points="12,-16 18,-8 2,0" fill="#38bdf8"/>
+      <polygon points="-12,-16 -18,-8 2,0" fill="#a5f3fc"/>
+      <polygon points="-12,-16 0,-24 12,-16" fill="#ffffff"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="124" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="86" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">💍 Pernikahan</text>
+</svg>

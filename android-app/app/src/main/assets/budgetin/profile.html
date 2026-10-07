@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Profile - Budgetin</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <aside class="desktop-sidebar">
+        <div class="sidebar-logo"><div class="sidebar-logo-icon">B</div><div><strong>Budgetin</strong><small>Financial Manager</small></div></div>
+        <nav class="sidebar-menu">
+            <a href="index.html" class="sidebar-item"><span>⌂</span><div><strong>Home</strong><small>Dashboard</small></div></a>
+            <a href="transaction.html" class="sidebar-item"><span>↕</span><div><strong>Transaksi</strong><small>Catatan keuangan</small></div></a>
+            <a href="target.html" class="sidebar-item"><span>🎯</span><div><strong>Target</strong><small>Tabungan & tujuan</small></div></a>
+            <a href="bank.html" class="sidebar-item"><span>🏦</span><div><strong>Rekening</strong><small>Kelola rekening</small></div></a>
+            <a href="investment.html" class="sidebar-item"><span>📈</span><div><strong>Investasi</strong><small>Portfolio investasi</small></div></a>
+            <a href="report.html" class="sidebar-item"><span>📊</span><div><strong>Laporan</strong><small>Analisis keuangan</small></div></a>
+        </nav>
+        <div class="sidebar-bottom"><div class="sidebar-user"><div class="sidebar-avatar">B</div><div><strong>Pengguna</strong><small>Personal Account</small></div></div><button class="sidebar-logout" onclick="logoutBudgetin()">🚪 Keluar</button></div>
+    </aside>
+    <header>
+        <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">☰</button>
+        <div><p class="greeting">Account & Security</p><h1>Profile</h1></div>
+        <div class="profile">B</div>
+    </header>
+    <main class="profile-page">
+        <div id="profileToast" class="profile-toast" role="status"></div>
+        <section class="profile-hero">
+            <div id="profileAvatarPreview" class="profile-avatar-large">B</div>
+            <div><h2 id="profileDisplayName">Pengguna</h2><p id="profileDisplayEmail">-</p><button type="button" class="profile-secondary-btn" id="avatarChooseButton">Ganti foto</button><button type="button" class="profile-text-btn" id="avatarRemoveButton">Hapus foto</button><input id="avatarInput" type="file" accept="image/jpeg,image/png,image/webp" hidden></div>
+        </section>
+        <section class="profile-panel" id="settings">
+            <div class="profile-panel-heading"><div><small>PROFILE INFORMATION</small><h2>Informasi Profil</h2><p>Perbarui nama yang tampil di Budgetin.</p></div></div>
+            <form id="profileNameForm" class="profile-form"><label for="profileName">Nama Lengkap</label><input id="profileName" type="text" maxlength="80" required><button class="save-btn" type="submit">Simpan Perubahan</button></form>
+        </section>
+        <section class="profile-panel">
+            <div class="profile-panel-heading"><div><small>ACCOUNT SETTINGS</small><h2>Ganti Email</h2><p>Gunakan password saat ini untuk mengonfirmasi perubahan.</p></div></div>
+            <form id="emailForm" class="profile-form"><label for="currentEmail">Email Saat Ini</label><input id="currentEmail" type="email" readonly><label for="newEmail">Email Baru</label><input id="newEmail" type="email" autocomplete="email" required><label for="emailPassword">Password Saat Ini</label><input id="emailPassword" type="password" autocomplete="current-password" required><button class="save-btn" type="submit">Update Email</button></form>
+        </section>
+        <section class="profile-panel" id="security">
+            <div class="profile-panel-heading"><div><small>ACCOUNT SECURITY</small><h2>Ganti Password</h2><p>Password baru minimal terdiri dari 8 karakter.</p></div></div>
+            <form id="passwordForm" class="profile-form"><label for="currentPassword">Password Saat Ini</label><input id="currentPassword" type="password" autocomplete="current-password" required><label for="newPassword">Password Baru</label><input id="newPassword" type="password" autocomplete="new-password" required><label for="confirmNewPassword">Konfirmasi Password Baru</label><input id="confirmNewPassword" type="password" autocomplete="new-password" required><button class="save-btn" type="submit">Change Password</button></form>
+        </section>
+        <section class="profile-panel profile-account-info">
+            <div class="profile-panel-heading"><div><small>ACCOUNT INFORMATION</small><h2>Informasi Akun</h2></div></div>
+            <dl><div><dt>Email akun</dt><dd id="accountEmail">-</dd></div><div><dt>Tanggal dibuat</dt><dd id="accountCreatedAt">-</dd></div><div><dt>Status</dt><dd><span class="account-status">Aktif</span></dd></div></dl>
+        </section>
+        <section class="profile-panel data-management-panel" id="data-management">
+            <div class="profile-panel-heading"><div><small>DATA MANAGEMENT</small><h2>Backup & Restore Data</h2><p>Backup berisi data keuangan Budgetin. Simpan file ini di tempat yang aman.</p></div></div>
+            <div class="data-management-grid">
+                <article><div class="data-management-icon">↓</div><div><h3>Backup Data</h3><p>Amankan seluruh data Budgetin dalam satu file.</p><button type="button" class="save-btn" id="backupDataButton">Download Backup</button></div></article>
+                <article><div class="data-management-icon">↑</div><div><h3>Restore Data</h3><p>Pulihkan data Budgetin dari file backup.</p><button type="button" class="profile-secondary-btn" id="restoreDataButton">Choose Backup File</button><input id="restoreFileInput" type="file" accept="application/json,.json" hidden></div></article>
+            </div>
+            <p id="lastBackupInfo" class="last-backup-info">Last Backup: Belum pernah backup</p>
+            <div id="backupMessage" class="backup-message" role="status"></div>
+        </section>
+        <section class="profile-panel danger-zone">
+            <div class="profile-panel-heading"><div><small>DANGER ZONE</small><h2>Keluar dari akun</h2><p>Data keuangan Anda tidak akan dihapus.</p></div><button type="button" class="danger-btn" id="profileLogoutButton">Logout</button></div>
+        </section>
+    </main>
+    <nav class="bottom-nav">
+        <a href="index.html"><span>⌂</span>Home</a>
+        <a href="target.html"><span>🎯</span>Target</a>
+        <a href="investment.html"><span>📈</span>Investasi</a>
+        <a href="bank.html"><span>🏦</span>Bank</a>
+        <a href="transaction.html"><span>↕</span>Transaksi</a>
+    </nav>
+</div>
+<script src="auth.js"></script>
+<script src="profile-ui.js"></script>
+<script src="app.js"></script>
+<script src="profile.js"></script>
+<script src="backup.js"></script>
+</body>
+</html>

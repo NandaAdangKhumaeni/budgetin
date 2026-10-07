@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgLife" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="50%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="coffeeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgLife)"/>
+  <circle cx="390" cy="80" r="90" fill="#fb923c" opacity="0.3"/>
+  <circle cx="80" cy="200" r="80" fill="#ea580c" opacity="0.4"/>
+
+  <!-- Coffee Cup, Headphones & Camera Lifestyle Collage -->
+  <g transform="translate(150, 60)">
+    <!-- Wireless Headphones Arc -->
+    <path d="M25 80 A65 65 0 0 1 155 80" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+    <!-- Headphone Earcups -->
+    <rect x="15" y="70" width="18" height="34" rx="8" fill="#1e293b"/>
+    <rect x="147" y="70" width="18" height="34" rx="8" fill="#1e293b"/>
+
+    <!-- Takeaway Coffee Cup -->
+    <g transform="translate(60, 50)">
+      <polygon points="12,40 48,40 42,95 18,95" fill="url(#coffeeGrad)"/>
+      <rect x="9" y="32" width="42" height="9" rx="3" fill="#ffffff"/>
+      <!-- Cup sleeve -->
+      <polygon points="14,55 46,55 43,76 17,76" fill="#78350f"/>
+      <circle cx="30" cy="65" r="5" fill="#fef3c7"/>
+      <!-- Steam vapors -->
+      <path d="M25 25 Q22 15 28 8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+      <path d="M35 25 Q38 15 32 8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="112" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="80" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">☕ Lifestyle</text>
+</svg>

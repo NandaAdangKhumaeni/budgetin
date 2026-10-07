@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Transaksi - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+   <aside class="desktop-sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                B
+            </div>
+
+            <div>
+                <strong>Budgetin</strong>
+                <small>Financial Manager</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+
+        <!-- MENU SIDEBAR -->
+
+        <nav class="sidebar-menu">
+
+
+            <a
+                href="index.html"
+                class="sidebar-item"
+            >
+
+                <span>
+                    ⌂
+                </span>
+
+                <div>
+
+                    <strong>
+                        Home
+                    </strong>
+
+                    <small>
+                        Dashboard
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="transaction.html"
+                class="sidebar-item active"
+            >
+
+                <span>
+                    ↕
+                </span>
+
+                <div>
+
+                    <strong>
+                        Transaksi
+                    </strong>
+
+                    <small>
+                        Catatan keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="target.html"
+                class="sidebar-item"
+            >
+
+                <span>
+                    🎯
+                </span>
+
+                <div>
+
+                    <strong>
+                        Target
+                    </strong>
+
+                    <small>
+                        Target tabungan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="bank.html"
+                class="sidebar-item"
+            >
+
+                <span>
+                    🏦
+                </span>
+
+                <div>
+
+                    <strong>
+                        Rekening
+                    </strong>
+
+                    <small>
+                        Kelola rekening
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="investment.html"
+                class="sidebar-item"
+            >
+
+                <span>
+                    📈
+                </span>
+
+                <div>
+
+                    <strong>
+                        Investasi
+                    </strong>
+
+                    <small>
+                        Portofolio investasi
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="report.html"
+                class="sidebar-item"
+            >
+
+                <span>
+                    📊
+                </span>
+
+                <div>
+
+                    <strong>
+                        Laporan
+                    </strong>
+
+                    <small>
+                        Analisis keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="sidebar-user">
+
+                <div class="sidebar-avatar">
+                    N
+                </div>
+
+                <div>
+
+                    <strong>
+                        Nan
+                    </strong>
+
+                    <small>
+                        Personal Account
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="sidebar-logout"
+                onclick="logoutBudgetin()"
+            >
+
+                🚪 Keluar
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="page-header">
+
+        <div class="header-left">
+
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                type="button"
+                onclick="toggleSidebar()"
+                aria-label="Toggle sidebar"
+            >
+                ☰
+            </button>
+
+            <div>
+
+                <p class="greeting">
+                    Catatan Keuangan 💸
+                </p>
+
+                <h1>
+                    Transaksi
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="profile">
+            N
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- TRANSACTION CONTENT -->
+
+        <div class="transaction-fixed-area">
+
+
+            <!-- =================================================
+                 RINGKASAN
+                 ================================================= -->
+
+            <section class="transaction-summary">
+
+
+                <div>
+
+                    <small>
+                        Pemasukan
+                    </small>
+
+                    <strong id="transactionIncome">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Pengeluaran
+                    </small>
+
+                    <strong id="transactionExpense">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 JUDUL
+                 ================================================= -->
+
+            <div class="section-title transaction-title">
+
+
+                <h2>
+                    Riwayat Transaksi
+                </h2>
+
+
+                <button
+                    type="button"
+                    onclick="openTransactionModal()"
+                >
+
+                    + Tambah
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FILTER
+                 ================================================= -->
+
+            <div class="transaction-filter">
+
+
+                <div class="filter-row">
+
+
+                    <!-- DARI -->
+
+                    <div class="filter-field">
+
+                        <label>
+                            Dari
+                        </label>
+
+                        <input
+                            type="date"
+                            id="filterStartDate"
+                        >
+
+                    </div>
+
+
+                    <!-- KATEGORI -->
+
+                    <div class="filter-category-field">
+
+                        <label>
+                            Kategori
+                        </label>
+
+                        <select id="filterCategory">
+
+                            <option value="">
+                                Semua Kategori
+                            </option>
+
+                            <option value="Makanan & Minuman">
+                                🍔 Makanan & Minuman
+                            </option>
+
+                            <option value="Transportasi">
+                                🚗 Transportasi
+                            </option>
+
+                            <option value="Belanja">
+                                🛒 Belanja
+                            </option>
+
+                            <option value="Tagihan">
+                                💳 Tagihan
+                            </option>
+
+                            <option value="Kebutuhan Rumah">
+                                🏠 Kebutuhan Rumah
+                            </option>
+
+                            <option value="Kesehatan">
+                                ❤️ Kesehatan
+                            </option>
+
+                            <option value="Pendidikan">
+                                📚 Pendidikan
+                            </option>
+
+                            <option value="Hiburan">
+                                🎮 Hiburan
+                            </option>
+
+                            <option value="Belanja Pribadi">
+                                🛍️ Belanja Pribadi
+                            </option>
+
+                            <option value="Lainnya">
+                                📦 Lainnya
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SAMPAI -->
+
+                    <div class="filter-field">
+
+                        <label>
+                            Sampai
+                        </label>
+
+                        <input
+                            type="date"
+                            id="filterEndDate"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BUTTON FILTER -->
+
+                <div class="filter-buttons">
+
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        onclick="filterTransactions()"
+                    >
+
+                        🔍 Filter
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="reset-filter-btn"
+                        onclick="resetTransactionFilter()"
+                    >
+
+                        Reset
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <!-- Budget kategori dan transaksi rutin dikelola terpisah dari transaksi manual. -->
+        <div id="financeTools"></div>
+
+
+
+        <!-- =====================================================
+             HASIL FILTER
+             ===================================================== -->
+
+        <div
+            id="filterResultInfo"
+            class="filter-result-info"
+        ></div>
+
+
+
+        <!-- =====================================================
+             LIST TRANSAKSI
+             ===================================================== -->
+
+        <div
+            id="transactionList"
+            class="transaction-list"
+        ></div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         BOTTOM NAV
+         ===================================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <a href="index.html">
+
+            <span>
+                ⌂
+            </span>
+
+            Home
+
+        </a>
+
+
+        <a href="target.html">
+
+            <span>
+                🎯
+            </span>
+
+            Target
+
+        </a>
+
+
+        <a href="investment.html">
+
+            <span>
+                📈
+            </span>
+
+            Investasi
+
+        </a>
+
+
+        <a href="bank.html">
+
+            <span>
+                🏦
+            </span>
+
+            Bank
+
+        </a>
+
+
+        <a
+            href="transaction.html"
+            class="active"
+        >
+
+            <span>
+                ↕
+            </span>
+
+            Transaksi
+
+        </a>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL TRANSAKSI
+     ========================================================= -->
+
+<div
+    class="modal"
+    id="transactionModal"
+>
+
+
+    <div class="modal-content">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="modal-header">
+
+
+            <h2>
+                Tambah Transaksi
+            </h2>
+
+
+            <button
+                type="button"
+                onclick="closeTransactionModal()"
+            >
+
+                ×
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- SCAN STRUK (APK) -->
+
+        <div class="receipt-scan">
+
+            <div>
+                <strong>Scan Bukti Transaksi</strong>
+                <small>Ambil foto atau pilih dari galeri. Hasil scan selalu perlu dikonfirmasi.</small>
+            </div>
+
+            <button
+                type="button"
+                class="receipt-scan-btn"
+                onclick="scanReceipt()"
+            >
+                📷 Scan Bukti
+            </button>
+
+            <button
+                type="button"
+                class="receipt-manual-btn"
+                onclick="startManualTransaction()"
+            >
+                ✍ Input Manual
+            </button>
+
+            <p id="receiptScanStatus" class="receipt-scan-status" aria-live="polite"></p>
+
+            <div id="receiptScanDetails" class="receipt-scan-details" hidden>
+                <strong>Hasil yang terdeteksi</strong>
+                <dl>
+                    <div><dt>Tanggal</dt><dd id="receiptDateDetected">—</dd></div>
+                    <div><dt>Merchant / Sumber</dt><dd id="receiptMerchantDetected">—</dd></div>
+                    <div><dt>Nominal</dt><dd id="receiptAmountDetected">—</dd></div>
+                    <div><dt>Kategori</dt><dd id="receiptCategoryDetected">—</dd></div>
+                    <div><dt>Rekening</dt><dd id="receiptBankDetected">—</dd></div>
+                    <div><dt>Catatan</dt><dd id="receiptNoteDetected">—</dd></div>
+                </dl>
+            </div>
+
+        </div>
+
+
+
+        <!-- TANGGAL -->
+
+        <label>
+            Tanggal Transaksi
+        </label>
+
+        <input type="date" id="transactionDate">
+
+
+
+        <!-- JENIS TRANSAKSI -->
+
+        <label>
+            Jenis Transaksi
+        </label>
+
+
+        <select
+            id="transactionType"
+            onchange="updateTransactionCategoryVisibility()"
+        >
+
+            <option value="income">
+                Pemasukan
+            </option>
+
+            <option value="expense">
+                Pengeluaran
+            </option>
+
+        </select>
+
+
+
+        <!-- KATEGORI -->
+
+        <div
+            id="transactionCategoryWrapper"
+            style="display: none;"
+        >
+
+
+            <label>
+                Kategori
+            </label>
+
+
+            <select id="transactionCategory">
+
+
+                <option value="">
+                    Pilih Kategori
+                </option>
+
+
+                <option value="Makanan & Minuman">
+                    🍔 Makanan & Minuman
+                </option>
+
+
+                <option value="Transportasi">
+                    🚗 Transportasi
+                </option>
+
+
+                <option value="Belanja">
+                    🛒 Belanja
+                </option>
+
+
+                <option value="Tagihan">
+                    💳 Tagihan
+                </option>
+
+
+                <option value="Kebutuhan Rumah">
+                    🏠 Kebutuhan Rumah
+                </option>
+
+
+                <option value="Kesehatan">
+                    ❤️ Kesehatan
+                </option>
+
+
+                <option value="Pendidikan">
+                    📚 Pendidikan
+                </option>
+
+
+                <option value="Hiburan">
+                    🎮 Hiburan
+                </option>
+
+
+                <option value="Belanja Pribadi">
+                    🛍️ Belanja Pribadi
+                </option>
+
+
+                <option value="Lainnya">
+                    📦 Lainnya
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- KETERANGAN -->
+
+        <label>
+            Merchant / Keterangan
+        </label>
+
+
+        <input
+            type="text"
+            id="transactionDescription"
+            placeholder="Contoh: Gaji"
+        >
+
+
+
+        <!-- CATATAN -->
+
+        <label>
+            Catatan
+        </label>
+
+        <textarea
+            id="transactionNote"
+            rows="3"
+            placeholder="Tambahkan catatan bila diperlukan"
+        ></textarea>
+
+        <label>
+            Metode Pembayaran
+        </label>
+
+        <input
+            type="text"
+            id="transactionPaymentMethod"
+            placeholder="Contoh: QRIS, Transfer BCA, Tunai"
+        >
+
+
+
+        <!-- REKENING -->
+
+        <label>
+            Rekening
+        </label>
+
+
+        <select id="transactionBank">
+
+            <option value="">
+                Pilih Rekening
+            </option>
+
+        </select>
+
+
+
+        <!-- NOMINAL -->
+
+        <label>
+            Nominal
+        </label>
+
+
+        <input
+            type="number"
+            id="transactionAmount"
+            placeholder="500000"
+        >
+
+
+
+        <!-- SIMPAN -->
+
+        <button
+            type="button"
+            class="save-btn"
+            onclick="saveTransaction()"
+        >
+
+            Simpan Transaksi
+
+        </button>
+
+
+
+        <!-- KEMBALI -->
+
+        <button
+            type="button"
+            class="back-btn"
+            onclick="closeTransactionModal()"
+        >
+
+            ← Kembali
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script src="auth.js"></script>
+<script src="profile-ui.js"></script>
+<script src="./app.js"></script>
+<script src="./finance.js"></script>
+
+
+</body>
+
+</html>

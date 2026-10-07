@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.application'
+}
+
+// The web app is copied into the ordinary Android assets directory before
+// packaging. `rootProject.file('../')` resolves to the BUDGETIN web root;
+// using `file('../')` here would incorrectly resolve from the :app module.
+def webRoot = rootProject.file('../')
+def bundledWebAssets = file('src/main/assets/budgetin')
+
+tasks.register('syncWebAssets', Sync) {
+    from(webRoot) {
+        include '*.html', '*.js', '*.css'
+        include 'vendor/**'
+    }
+    into(bundledWebAssets)
+}
+
+android {
+    namespace 'com.budgetin.app'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.budgetin.app'
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName '1.0.0'
+    }
+}
+
+tasks.named('preBuild').configure {
+    dependsOn(tasks.named('syncWebAssets'))
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+    implementation 'com.google.mlkit:text-recognition:16.0.1'
+}

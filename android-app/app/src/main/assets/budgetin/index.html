@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="desktop-sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">B</div>
+
+            <div>
+                <strong>Budgetin</strong>
+                <small>Financial Manager</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="index.html" class="sidebar-item active">
+                <span>⌂</span>
+                <div>
+                    <strong>Home</strong>
+                    <small>Dashboard</small>
+                </div>
+            </a>
+
+            <a href="transaction.html" class="sidebar-item">
+                <span>↕</span>
+                <div>
+                    <strong>Transaksi</strong>
+                    <small>Catatan keuangan</small>
+                </div>
+            </a>
+
+            <a href="target.html" class="sidebar-item">
+                <span>🎯</span>
+                <div>
+                    <strong>Target</strong>
+                    <small>Tabungan & tujuan</small>
+                </div>
+            </a>
+
+            <a href="bank.html" class="sidebar-item">
+                <span>🏦</span>
+                <div>
+                    <strong>Rekening</strong>
+                    <small>Kelola rekening</small>
+                </div>
+            </a>
+
+            <a href="investment.html" class="sidebar-item">
+                <span>📈</span>
+                <div>
+                    <strong>Investasi</strong>
+                    <small>Portfolio investasi</small>
+                </div>
+            </a>
+
+            <a href="report.html" class="sidebar-item">
+                <span>📊</span>
+                <div>
+                    <strong>Laporan</strong>
+                    <small>Analisis keuangan</small>
+                </div>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">N</div>
+
+                <div>
+                    <strong>Nan</strong>
+                    <small>Personal Account</small>
+                </div>
+            </div>
+
+            <button
+                class="sidebar-logout"
+                onclick="logoutBudgetin()"
+            >
+                🚪 Keluar
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= HEADER ================= -->
+    <header>
+
+        <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            onclick="toggleSidebar()"
+            aria-label="Toggle sidebar"
+        >
+            ☰
+        </button>
+
+        <div>
+            <p class="greeting">Good afternoon 👋</p>
+            <h1>Budgetin</h1>
+        </div>
+
+        <div class="profile">
+            N
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main>
+
+
+        <!-- ================= TOTAL KEKAYAAN ================= -->
+
+        <section class="balance-card">
+
+            <p>Total Kekayaan</p>
+
+            <h2 id="totalWealth">
+                Rp 0
+            </h2>
+
+            <div class="wealth-breakdown">
+
+                <div>
+                    <small>Rekening</small>
+
+                    <strong id="totalBankBalance">
+                        Rp 0
+                    </strong>
+                </div>
+
+
+                <div>
+                    <small>Tabungan</small>
+
+                    <strong id="totalGoalBalance">
+                        Rp 0
+                    </strong>
+                </div>
+
+
+                <div>
+                    <small>Investasi</small>
+
+                    <strong id="totalInvestment">
+                        Rp 0
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CASH FLOW SUMMARY ================= -->
+
+        <section class="cashflow-card">
+
+            <div class="section-title">
+
+                <h2>
+                    Cash Flow
+                </h2>
+
+            </div>
+
+
+            <div class="cashflow-info">
+
+                <div>
+
+                    <small>
+                        ↑ Pemasukan
+                    </small>
+
+                    <strong id="totalIncome">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        ↓ Pengeluaran
+                    </small>
+
+                    <strong id="totalExpense">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= GRAFIK CASH FLOW ================= -->
+
+        <section class="chart-card">
+
+            <div class="section-title">
+
+                <h2>
+                    📊 Cash Flow
+                </h2>
+
+
+                <select
+                    id="chartPeriod"
+                    onchange="renderCashflowChart()"
+                >
+
+                    <option value="7days">
+                        7 Hari
+                    </option>
+
+                    <option
+                        value="month"
+                        selected
+                    >
+                        Bulan Ini
+                    </option>
+
+                    <option value="6months">
+                        6 Bulan
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="cashflowChart"
+                ></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LAPORAN KEUANGAN ================= -->
+
+        <!-- ================= FINANCIAL OVERVIEW ================= -->
+
+        <section class="section finance-dashboard">
+            <div class="section-title dashboard-section-header">
+                <h2>✦ Ringkasan Finansial</h2>
+            </div>
+
+            <div class="finance-dashboard-grid">
+                <article class="finance-widget finance-health-widget">
+                    <small>Financial Health Score</small>
+                    <div id="financialHealth"></div>
+                    <div id="financialHealthBreakdown" class="health-breakdown"></div>
+                    <div id="financialHealthTips" class="health-tips"></div>
+                </article>
+
+                <article class="finance-widget finance-budget-widget">
+                    <div class="finance-widget-heading"><small>Budget Overview</small><a href="transaction.html">Atur →</a></div>
+                    <div id="dashboardBudgetList"></div>
+                </article>
+
+                <article class="finance-widget finance-goals-widget">
+                    <div class="finance-widget-heading"><small>Goals Progress</small><a href="target.html">Lihat →</a></div>
+                    <div id="dashboardGoalProgress"></div>
+                </article>
+
+                <article class="finance-widget finance-forecast-widget">
+                    <div class="finance-widget-heading"><small>Cashflow Forecast</small><span id="forecastStatus"></span></div>
+                    <small id="forecastBalance" class="forecast-balance"></small><span id="forecastWarning"></span>
+                    <div class="forecast-values"><div><small>30 hari</small><strong id="forecast30">Rp 0</strong></div><div><small>60 hari</small><strong id="forecast60">Rp 0</strong></div><div><small>90 hari</small><strong id="forecast90">Rp 0</strong></div></div>
+                    <div class="forecast-chart-wrap"><canvas id="forecastChart"></canvas></div>
+                </article>
+
+                <article class="finance-widget finance-insights-widget">
+                    <small>Smart Insights</small>
+                    <ul id="smartInsights" class="finance-insights"></ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section dashboard-report">
+
+            <div class="report-home-card">
+
+
+                <div class="report-home-icon">
+                    📊
+                </div>
+
+
+                <div class="report-home-info">
+
+                    <small>
+                        Laporan Keuangan
+                    </small>
+
+                    <strong>
+                        Lihat ringkasan keuangan kamu
+                    </strong>
+
+                    <span>
+                        Pemasukan • Pengeluaran • Investasi
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="report.html"
+                    class="report-home-btn"
+                >
+                    →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TARGET TABUNGAN ================= -->
+
+        <section class="section dashboard-goals">
+
+
+            <div class="section-title dashboard-section-header">
+
+                <h2>
+                    🎯 Target Tabungan
+                </h2>
+
+
+                <a
+                    href="target.html"
+                    class="view-all"
+                >
+                    Lihat semua →
+                </a>
+
+            </div>
+
+
+            <div id="goalList"></div>
+
+        </section>
+
+
+
+        <!-- ================= REKENING ================= -->
+
+        <section class="section dashboard-banks">
+
+
+            <div class="section-title dashboard-section-header">
+
+                <h2>
+                    🏦 Rekening
+                </h2>
+
+
+                <a
+                    href="bank.html"
+                    class="view-all"
+                >
+                    Lihat semua →
+                </a>
+
+            </div>
+
+
+            <div id="homeBankList"></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= MOBILE NAV ================= -->
+
+    <nav class="bottom-nav">
+
+
+        <a
+            href="index.html"
+            class="active"
+        >
+            <span>⌂</span>
+            Home
+        </a>
+
+
+        <a href="target.html">
+            <span>🎯</span>
+            Target
+        </a>
+
+
+        <a href="investment.html">
+            <span>📈</span>
+            Investasi
+        </a>
+
+
+        <a href="bank.html">
+            <span>🏦</span>
+            Bank
+        </a>
+
+
+        <a href="transaction.html">
+            <span>↕</span>
+            Transaksi
+        </a>
+
+
+    </nav>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL TARGET
+===================================================== -->
+
+<div
+    class="modal"
+    id="goalModal"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2>
+                Tambah Target
+            </h2>
+
+            <button onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <label>
+            Nama Target
+        </label>
+
+        <input
+            type="text"
+            id="goalName"
+            placeholder="Contoh: Dana Nikah"
+        >
+
+
+        <select id="goalBank">
+
+            <option value="">
+                Pilih Rekening
+            </option>
+
+        </select>
+
+
+        <label>
+            Target Nominal
+        </label>
+
+        <input
+            type="number"
+            id="goalTarget"
+            placeholder="50000000"
+        >
+
+
+        <label>
+            Saldo Saat Ini
+        </label>
+
+        <input
+            type="number"
+            id="goalCurrent"
+            placeholder="15000000"
+        >
+
+
+        <label>
+            Target Tanggal
+        </label>
+
+        <input
+            type="date"
+            id="goalDate"
+        >
+
+
+        <button
+            class="save-btn"
+            onclick="saveGoal()"
+        >
+            Simpan Target
+        </button>
+
+
+        <button
+            class="back-btn"
+            onclick="closeDetail()"
+        >
+            ← Kembali
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL TRANSAKSI
+===================================================== -->
+
+<div
+    class="modal"
+    id="transactionModal"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2>
+                Tambah Transaksi
+            </h2>
+
+
+            <button
+                onclick="closeTransactionModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <label>
+            Jenis Transaksi
+        </label>
+
+
+        <select id="transactionType">
+
+            <option value="income">
+                Pemasukan
+            </option>
+
+            <option value="expense">
+                Pengeluaran
+            </option>
+
+        </select>
+
+
+
+        <label>
+            Keterangan
+        </label>
+
+
+        <input
+            type="text"
+            id="transactionDescription"
+            placeholder="Contoh: Gaji"
+        >
+
+
+
+        <label>
+            Nominal
+        </label>
+
+
+        <input
+            type="number"
+            id="transactionAmount"
+            placeholder="500000"
+        >
+
+
+
+        <button
+            class="save-btn"
+            onclick="saveTransaction()"
+        >
+            Simpan Transaksi
+        </button>
+
+
+
+        <button
+            class="back-btn"
+            onclick="closeTransactionModal()"
+        >
+            ← Kembali
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="vendor/chart.umd.min.js"></script>
+
+<script src="auth.js"></script>
+<script src="profile-ui.js"></script>
+<script src="market-price.js"></script>
+
+<script src="./app.js"></script>
+<script src="./finance.js"></script>
+
+
+</body>
+
+</html>

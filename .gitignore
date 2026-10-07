@@ -1,0 +1,11 @@
+/vendor/
+/uploads/*
+!/uploads/.gitkeep
+/.idea/
+/.vscode/
+/scratch/
+*.log
+
+# Credentials
+api/config.php
+.env

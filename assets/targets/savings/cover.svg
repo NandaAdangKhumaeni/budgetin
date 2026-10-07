@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgSavings" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="50%" stop-color="#166534"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="coinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgSavings)"/>
+  <circle cx="380" cy="80" r="100" fill="#4ade80" opacity="0.25"/>
+  <circle cx="90" cy="200" r="80" fill="#15803d" opacity="0.4"/>
+
+  <!-- Piggy Bank & Falling Gold Coins -->
+  <g transform="translate(160, 60)">
+    <!-- Piggy Bank Body -->
+    <ellipse cx="80" cy="95" rx="65" ry="50" fill="#f472b6"/>
+    <!-- Piggy Snout -->
+    <ellipse cx="15" cy="98" rx="14" ry="18" fill="#ec4899"/>
+    <circle cx="12" cy="94" r="3" fill="#831843"/>
+    <circle cx="12" cy="103" r="3" fill="#831843"/>
+    <!-- Eye -->
+    <circle cx="45" cy="78" r="4.5" fill="#1e293b"/>
+    <!-- Ear -->
+    <polygon points="65,55 85,35 90,65" fill="#ec4899"/>
+    <!-- Legs -->
+    <rect x="40" y="130" width="18" height="24" rx="6" fill="#ec4899"/>
+    <rect x="100" y="130" width="18" height="24" rx="6" fill="#ec4899"/>
+    <!-- Tail -->
+    <path d="M142 90 Q155 80 152 70 Q145 65 140 75" fill="none" stroke="#ec4899" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Coin Slot -->
+    <ellipse cx="85" cy="46" rx="18" ry="4" fill="#9d174d"/>
+
+    <!-- Gold Coin dropping into slot -->
+    <g transform="translate(85, 20)">
+      <circle cx="0" cy="0" r="18" fill="url(#coinGrad)" filter="url(#goldGlow)"/>
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#ca8a04" stroke-width="1.5"/>
+      <text x="0" y="6" fill="#854d0e" font-size="14" font-weight="900" text-anchor="middle" font-family="sans-serif">Rp</text>
+    </g>
+
+    <!-- Floating Coins Stack on Side -->
+    <g transform="translate(-40, 110)">
+      <ellipse cx="0" cy="30" rx="20" ry="8" fill="url(#coinGrad)"/>
+      <ellipse cx="0" cy="22" rx="20" ry="8" fill="url(#coinGrad)"/>
+      <ellipse cx="0" cy="14" rx="20" ry="8" fill="url(#coinGrad)"/>
+      <ellipse cx="0" cy="6" rx="20" ry="8" fill="url(#coinGrad)"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="112" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="80" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">💰 Tabungan</text>
+</svg>

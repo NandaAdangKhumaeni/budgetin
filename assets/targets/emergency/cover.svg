@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgEmergency" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <filter id="shieldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgEmergency)"/>
+  <circle cx="390" cy="80" r="90" fill="#38bdf8" opacity="0.2" filter="url(#shieldGlow)"/>
+  <circle cx="90" cy="190" r="80" fill="#0284c7" opacity="0.3"/>
+
+  <!-- Shield of Protection & Lifebuoy / Medical Cross -->
+  <g transform="translate(180, 50)">
+    <!-- Outer Crest/Shield Shadow -->
+    <path d="M60 10 Q120 10 120 50 Q120 120 60 160 Q0 120 0 50 Q0 10 60 10 Z" fill="#0f172a" opacity="0.6"/>
+    <!-- Main Shield -->
+    <path d="M60 15 Q115 15 115 52 Q115 116 60 154 Q5 116 5 52 Q5 15 60 15 Z" fill="url(#shieldGrad)" stroke="#7dd3fc" stroke-width="4" filter="url(#shieldGlow)"/>
+    
+    <!-- Inner Emblem: Medical Plus & Umbrella / Heart -->
+    <g transform="translate(60, 75)">
+      <!-- First aid cross -->
+      <rect x="-9" y="-30" width="18" height="60" rx="4" fill="#ffffff"/>
+      <rect x="-30" y="-9" width="60" height="18" rx="4" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="8" fill="#38bdf8"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="140" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="94" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">🛡️ Emergency Fund</text>
+</svg>

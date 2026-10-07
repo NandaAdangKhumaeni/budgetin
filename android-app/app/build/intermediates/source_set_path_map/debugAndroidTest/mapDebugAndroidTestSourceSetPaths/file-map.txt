@@ -1,0 +1,4 @@
+com.budgetin.app.test.app-androidTest-0 C:\xampp\htdocs\BUDGETIN\android-app\app\build\generated\res\resValues\androidTest\debug
+com.budgetin.app.test.app-mergeDebugAndroidTestResources-1 C:\xampp\htdocs\BUDGETIN\android-app\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.budgetin.app.test.app-mergeDebugAndroidTestResources-2 C:\xampp\htdocs\BUDGETIN\android-app\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.budgetin.app.test.app-debugAndroidTest-3 C:\xampp\htdocs\BUDGETIN\android-app\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

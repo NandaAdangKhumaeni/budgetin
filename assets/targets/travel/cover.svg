@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgTravel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgTravel)"/>
+  <!-- Sun -->
+  <circle cx="360" cy="90" r="45" fill="url(#sunGrad)"/>
+  
+  <!-- Clouds -->
+  <path d="M60 120 Q80 95 110 105 Q135 85 160 105 Q185 105 195 120 Z" fill="#ffffff" opacity="0.65"/>
+  <path d="M280 160 Q300 140 325 148 Q345 130 365 148 Q385 148 395 160 Z" fill="#ffffff" opacity="0.5"/>
+
+  <!-- Jet Airplane Flight Path -->
+  <path d="M-20 220 Q160 210 240 130 Q300 70 420 50" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="8 8" opacity="0.8"/>
+
+  <!-- Airplane Vector -->
+  <g transform="translate(320, 60) rotate(-22)">
+    <path d="M0 0 L40 -4 L50 -8 L70 -5 L55 5 L60 25 L48 24 L38 6 L15 8 L18 20 L8 19 L4 8 L-15 10 L-20 6 L0 0 Z" fill="#ffffff"/>
+    <polygon points="15,0 35,-1 30,3" fill="#0284c7"/>
+  </g>
+
+  <!-- Palm Trees Silhouette on Island -->
+  <path d="M0 240 Q120 220 260 255 L260 270 L0 270 Z" fill="#0369a1"/>
+  <circle cx="90" cy="245" r="70" fill="#075985" opacity="0.5"/>
+  
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="94" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="71" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">✈️ Travel</text>
+</svg>

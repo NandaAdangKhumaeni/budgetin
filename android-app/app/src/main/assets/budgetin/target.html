@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Target - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="desktop-sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                B
+            </div>
+
+            <div>
+                <strong>Budgetin</strong>
+                <small>Financial Manager</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a
+                href="index.html"
+                class="sidebar-item"
+            >
+
+                <span>⌂</span>
+
+                <div>
+                    <strong>Home</strong>
+                    <small>Dashboard</small>
+                </div>
+
+            </a>
+
+
+            <a
+                href="transaction.html"
+                class="sidebar-item"
+            >
+
+                <span>↕</span>
+
+                <div>
+                    <strong>Transaksi</strong>
+                    <small>Catatan keuangan</small>
+                </div>
+
+            </a>
+
+
+            <a
+                href="target.html"
+                class="sidebar-item active"
+            >
+
+                <span>🎯</span>
+
+                <div>
+                    <strong>Target</strong>
+                    <small>Tabungan & tujuan</small>
+                </div>
+
+            </a>
+
+
+            <a
+                href="bank.html"
+                class="sidebar-item"
+            >
+
+                <span>🏦</span>
+
+                <div>
+                    <strong>Rekening</strong>
+                    <small>Kelola rekening</small>
+                </div>
+
+            </a>
+
+
+            <a
+                href="investment.html"
+                class="sidebar-item"
+            >
+
+                <span>📈</span>
+
+                <div>
+                    <strong>Investasi</strong>
+                    <small>Portfolio investasi</small>
+                </div>
+
+            </a>
+
+
+            <a
+                href="report.html"
+                class="sidebar-item"
+            >
+
+                <span>📊</span>
+
+                <div>
+                    <strong>Laporan</strong>
+                    <small>Analisis keuangan</small>
+                </div>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="sidebar-avatar">
+                    N
+                </div>
+
+                <div>
+                    <strong>Nan</strong>
+                    <small>Personal Account</small>
+                </div>
+
+            </div>
+
+
+            <button
+                class="sidebar-logout"
+                onclick="logoutBudgetin()"
+            >
+                🚪 Keluar
+            </button>
+            
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            onclick="toggleSidebar()"
+            aria-label="Toggle sidebar"
+        >
+            ☰
+        </button>
+
+
+        <div>
+
+            <p class="greeting">
+                Rencana Keuangan 🎯
+            </p>
+
+            <h1>
+                Target
+            </h1>
+
+        </div>
+
+
+        <div class="profile">
+            N
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+        <section class="section">
+
+
+            <!-- SECTION HEADER -->
+
+            <div class="section-title">
+
+                <h2>
+                    🎯 Target Tabungan
+                </h2>
+
+
+                <button
+                    onclick="openModal()"
+                >
+                    + Tambah
+                </button>
+
+            </div>
+
+
+            <!-- LIST TARGET -->
+
+            <div id="goalList"></div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MOBILE BOTTOM NAV
+    ====================================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <a href="index.html">
+
+            <span>⌂</span>
+
+            Home
+
+        </a>
+
+
+        <a
+            href="target.html"
+            class="active"
+        >
+
+            <span>🎯</span>
+
+            Target
+
+        </a>
+
+
+        <a href="investment.html">
+
+            <span>📈</span>
+
+            Investasi
+
+        </a>
+
+
+        <a href="bank.html">
+
+            <span>🏦</span>
+
+            Bank
+
+        </a>
+
+
+        <a href="transaction.html">
+
+            <span>↕</span>
+
+            Transaksi
+
+        </a>
+
+
+    </nav>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL TAMBAH TARGET
+===================================================== -->
+
+<div
+    class="modal"
+    id="goalModal"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2>
+                Tambah Target
+            </h2>
+
+
+            <button
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <!-- NAMA TARGET -->
+
+        <label>
+            Nama Target
+        </label>
+
+        <input
+            type="text"
+            id="goalName"
+            placeholder="Contoh: Mobil BMW M4"
+        >
+
+
+
+        <!-- REKENING -->
+
+        <label>
+            Rekening
+        </label>
+
+        <select id="goalBank">
+
+            <option value="">
+                Pilih Rekening
+            </option>
+
+        </select>
+
+
+
+        <!-- TARGET NOMINAL -->
+
+        <label>
+            Target Nominal
+        </label>
+
+        <input
+            type="number"
+            id="goalTarget"
+            placeholder="20000000"
+        >
+
+
+
+        <!-- SALDO AWAL -->
+
+        <label>
+            Saldo Awal
+        </label>
+
+        <input
+            type="number"
+            id="goalCurrent"
+            placeholder="0"
+        >
+
+
+
+        <!-- TARGET DATE -->
+
+        <label>
+            Target Tanggal
+        </label>
+
+        <input
+            type="date"
+            id="goalDate"
+        >
+
+        <!-- KONTRIBUSI BULANAN -->
+
+        <label>
+            Rencana Kontribusi per Bulan (opsional)
+        </label>
+
+        <input
+            type="number"
+            min="0"
+            id="goalMonthlyContribution"
+            placeholder="Contoh: 2500000"
+        >
+
+
+
+        <!-- SAVE -->
+
+        <button
+            class="save-btn"
+            onclick="saveGoal()"
+        >
+            Simpan Target
+        </button>
+
+
+
+        <!-- BACK -->
+
+        <button
+            class="back-btn"
+            onclick="closeModal()"
+        >
+            ← Kembali
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="auth.js"></script>
+<script src="profile-ui.js"></script>
+
+<script src="./app.js"></script>
+<script src="./finance.js"></script>
+
+
+</body>
+
+</html>

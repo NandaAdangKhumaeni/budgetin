@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGadget" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="270" fill="url(#bgGadget)"/>
+  <circle cx="390" cy="80" r="90" fill="#0ea5e9" opacity="0.2"/>
+  <circle cx="90" cy="200" r="90" fill="#6366f1" opacity="0.25"/>
+
+  <!-- Laptop & Smartphone Trio -->
+  <g transform="translate(130, 50)">
+    <!-- Laptop Base -->
+    <rect x="20" y="145" width="190" height="10" rx="3" fill="#94a3b8"/>
+    <path d="M90 145 L140 145 L135 148 L95 148 Z" fill="#64748b"/>
+    
+    <!-- Laptop Screen -->
+    <rect x="35" y="45" width="160" height="102" rx="6" fill="#0f172a" stroke="#cbd5e1" stroke-width="3"/>
+    <rect x="42" y="52" width="146" height="88" rx="3" fill="url(#screenGrad)"/>
+    <!-- Code line aesthetics on laptop screen -->
+    <rect x="52" y="65" width="55" height="6" rx="3" fill="#ffffff" opacity="0.9"/>
+    <rect x="52" y="77" width="85" height="6" rx="3" fill="#ffffff" opacity="0.75"/>
+    <rect x="52" y="89" width="40" height="6" rx="3" fill="#ffffff" opacity="0.6"/>
+
+    <!-- Smartphone In Front -->
+    <g transform="translate(170, 75)">
+      <rect x="0" y="0" width="55" height="95" rx="10" fill="#0f172a" stroke="#e2e8f0" stroke-width="2.5"/>
+      <rect x="4" y="6" width="47" height="83" rx="7" fill="url(#screenGrad)"/>
+      <circle cx="27" cy="11" r="2" fill="#0f172a"/>
+      <rect x="18" y="84" width="19" height="2" rx="1" fill="#ffffff" opacity="0.7"/>
+    </g>
+  </g>
+  <!-- Category Badge -->
+  <rect x="24" y="24" width="102" height="28" rx="14" fill="rgba(255,255,255,0.22)" backdrop-filter="blur(10px)"/>
+  <text x="75" y="43" fill="#ffffff" font-size="12" font-family="system-ui, sans-serif" font-weight="700" text-anchor="middle">💻 Gadget</text>
+</svg>

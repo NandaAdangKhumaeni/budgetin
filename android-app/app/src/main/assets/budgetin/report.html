@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Laporan - Budgetin</title>
+
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- ========================================
+         REPORT PAGE STYLE
+         KHUSUS HALAMAN LAPORAN
+    ========================================= -->
+
+    <style>
+
+        /* ================================
+           REPORT HEADER
+        ================================= */
+
+        .report-page-header {
+            margin-bottom: 18px;
+        }
+
+        .report-page-header h2 {
+            margin: 0;
+            font-size: 17px;
+        }
+
+
+        /* ================================
+           FILTER PERIODE
+        ================================= */
+
+        .report-filter-card {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.03);
+
+        }
+
+
+        .report-filter-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .report-filter-title h2 {
+
+            margin: 0;
+
+            font-size: 17px;
+
+        }
+
+
+        .report-filter-title span {
+
+            font-size: 11px;
+
+            color: #888;
+
+        }
+
+
+        #reportMonth,
+        #reportCategory {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            font-size: 13px;
+
+            outline: none;
+
+            cursor: pointer;
+
+        }
+
+
+        #reportMonth:focus,
+        #reportCategory:focus {
+
+            border-color: #111;
+
+        }
+
+        .download-report-btn {
+            width: 100%;
+            margin-top: 12px;
+            padding: 12px 14px;
+            border: 0;
+            border-radius: 10px;
+            background: #111827;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .download-report-btn:hover {
+            background: #000000;
+        }
+
+
+        /* ================================
+           SUMMARY
+        ================================= */
+
+        .report-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .report-card {
+
+            min-height: 125px;
+
+            padding: 17px;
+
+            border-radius: 17px;
+
+            border: 1px solid #eeeeee;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.03);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .report-card-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .report-card p {
+
+            margin: 0 0 5px;
+
+            color: #777;
+
+            font-size: 11px;
+
+        }
+
+
+        .report-card h3 {
+
+            margin: 0;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        /* PEMASUKAN */
+
+        .report-card.income
+        .report-card-icon {
+
+            background: #dcfce7;
+
+        }
+
+
+        .report-card.income h3 {
+
+            color: #16a34a;
+
+        }
+
+
+        /* PENGELUARAN */
+
+        .report-card.expense
+        .report-card-icon {
+
+            background: #fee2e2;
+
+        }
+
+
+        .report-card.expense h3 {
+
+            color: #dc2626;
+
+        }
+
+
+        /* INVESTASI */
+
+        .report-card.investment
+        .report-card-icon {
+
+            background: #ede9fe;
+
+        }
+
+
+        .report-card.investment h3 {
+
+            color: #7c3aed;
+
+        }
+
+
+        /* CASH FLOW */
+
+        .report-card.balance
+        .report-card-icon {
+
+            background: #fef3c7;
+
+        }
+
+
+        .report-card.balance h3 {
+
+            color: #d97706;
+
+        }
+
+
+        /* ================================
+           CHART CARD
+        ================================= */
+
+        .report-chart-card {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.03);
+
+        }
+
+
+        .report-chart-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .report-chart-header h2 {
+
+            margin: 0;
+
+            font-size: 17px;
+
+        }
+
+
+        .report-chart-header span {
+
+            font-size: 11px;
+
+            color: #888;
+
+            background: #f5f5f5;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+        }
+
+
+        .report-chart-container {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 300px;
+
+        }
+
+
+        .report-chart-container canvas {
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+        }
+
+
+        /* ================================
+           TOP CATEGORY
+        ================================= */
+
+        .report-top-category {
+
+            background: #ffffff;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.03);
+
+        }
+
+
+        .report-top-category h2 {
+
+            margin: 0 0 12px;
+
+            font-size: 17px;
+
+        }
+
+
+        #topExpenseCategory {
+
+            padding: 16px;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #111;
+
+        }
+
+
+        /* ================================
+           TABLET
+        ================================= */
+
+        @media screen and (max-width: 1000px) {
+
+            .report-summary {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media screen and (max-width: 768px) {
+
+            .report-summary {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 10px;
+
+            }
+
+
+            .report-card {
+
+                min-height: 110px;
+
+                padding: 14px;
+
+            }
+
+
+            .report-card h3 {
+
+                font-size: 15px;
+
+            }
+
+
+            .report-chart-container {
+
+                height: 250px;
+
+            }
+
+        }
+
+
+        @media screen and (max-width: 480px) {
+
+            .report-summary {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .report-chart-container {
+
+                height: 230px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="desktop-sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                B
+            </div>
+
+            <div>
+
+                <strong>
+                    Budgetin
+                </strong>
+
+                <small>
+                    Financial Manager
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="sidebar-menu">
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="sidebar-item"
+            >
+
+                <span>⌂</span>
+
+                <div>
+
+                    <strong>
+                        Home
+                    </strong>
+
+                    <small>
+                        Dashboard
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- TRANSAKSI -->
+
+            <a
+                href="transaction.html"
+                class="sidebar-item"
+            >
+
+                <span>↕</span>
+
+                <div>
+
+                    <strong>
+                        Transaksi
+                    </strong>
+
+                    <small>
+                        Catatan keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- TARGET -->
+
+            <a
+                href="target.html"
+                class="sidebar-item"
+            >
+
+                <span>🎯</span>
+
+                <div>
+
+                    <strong>
+                        Target
+                    </strong>
+
+                    <small>
+                        Tabungan & tujuan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- REKENING -->
+
+            <a
+                href="bank.html"
+                class="sidebar-item"
+            >
+
+                <span>🏦</span>
+
+                <div>
+
+                    <strong>
+                        Rekening
+                    </strong>
+
+                    <small>
+                        Kelola rekening
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- INVESTASI -->
+
+            <a
+                href="investment.html"
+                class="sidebar-item"
+            >
+
+                <span>📈</span>
+
+                <div>
+
+                    <strong>
+                        Investasi
+                    </strong>
+
+                    <small>
+                        Portfolio investasi
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- LAPORAN -->
+
+            <a
+                href="report.html"
+                class="sidebar-item active"
+            >
+
+                <span>📊</span>
+
+                <div>
+
+                    <strong>
+                        Laporan
+                    </strong>
+
+                    <small>
+                        Analisis keuangan
+                    </small>
+
+                </div>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="sidebar-user">
+
+                <div class="sidebar-avatar">
+                    N
+                </div>
+
+                <div>
+
+                    <strong>
+                        Nan
+                    </strong>
+
+                    <small>
+                        Personal Account
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="sidebar-logout"
+                onclick="logoutBudgetin()"
+            >
+
+                🚪 Keluar
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+
+        <div class="header-left">
+
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                type="button"
+                onclick="toggleSidebar()"
+                aria-label="Toggle sidebar"
+            >
+                ☰
+            </button>
+
+            <div>
+
+                <p class="greeting">
+                    Financial Report 📊
+                </p>
+
+                <h1>
+                    Laporan Keuangan
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile">
+            N
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =========================
+             FILTER PERIODE
+        ========================== -->
+
+        <section class="report-filter-card">
+
+
+            <div class="report-filter-title">
+
+                <h2>
+                    Periode Laporan
+                </h2>
+
+                <span>
+                    Pilih bulan
+                </span>
+
+            </div>
+
+
+            <select id="reportMonth">
+
+                <!-- Dipertahankan untuk kompatibilitas export PDF lama. -->
+
+                <option value="2026-01">
+                    Januari 2026
+                </option>
+
+                <option value="2026-02">
+                    Februari 2026
+                </option>
+
+                <option value="2026-03">
+                    Maret 2026
+                </option>
+
+                <option value="2026-04">
+                    April 2026
+                </option>
+
+                <option value="2026-05">
+                    Mei 2026
+                </option>
+
+                <option value="2026-06">
+                    Juni 2026
+                </option>
+
+                <option value="2026-07">
+                    Juli 2026
+                </option>
+
+                <option value="2026-08">
+                    Agustus 2026
+                </option>
+
+                <option value="2026-09">
+                    September 2026
+                </option>
+
+                <option value="2026-10">
+                    Oktober 2026
+                </option>
+
+                <option value="2026-11">
+                    November 2026
+                </option>
+
+                <option value="2026-12">
+                    Desember 2026
+                </option>
+
+            </select>
+
+            <select id="reportPeriod" aria-label="Pilih periode laporan">
+                <option value="this-month">Bulan ini</option>
+                <option value="last-month">Bulan lalu</option>
+                <option value="3-months">3 bulan terakhir</option>
+                <option value="6-months">6 bulan terakhir</option>
+                <option value="this-year">Tahun ini</option>
+                <option value="custom">Custom</option>
+            </select>
+            <div id="customReportDates" class="report-custom-dates" hidden>
+                <input id="reportStartDate" type="date" aria-label="Tanggal mulai">
+                <input id="reportEndDate" type="date" aria-label="Tanggal akhir">
+            </div>
+
+            <select
+                id="reportCategory"
+                aria-label="Filter kategori laporan"
+            >
+                <option value="">Semua kategori</option>
+            </select>
+
+            <button
+                type="button"
+                class="download-report-btn"
+                id="downloadReportPdf"
+            >
+                Download Laporan PDF
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             RINGKASAN
+        ========================== -->
+
+        <section>
+
+
+            <div class="report-page-header">
+
+                <h2>
+                    Ringkasan
+                </h2>
+
+            </div>
+
+
+            <div class="report-summary">
+
+
+                <!-- PEMASUKAN -->
+
+                <div class="report-card income">
+
+                    <div class="report-card-icon">
+                        ↗
+                    </div>
+
+                    <p>
+                        Pemasukan
+                    </p>
+
+                    <h3 id="reportIncome">
+                        Rp 0
+                    </h3>
+                    <small id="reportIncomeChange" class="report-change">Belum tersedia</small>
+
+                </div>
+
+
+                <!-- PENGELUARAN -->
+
+                <div class="report-card expense">
+
+                    <div class="report-card-icon">
+                        ↘
+                    </div>
+
+                    <p>
+                        Pengeluaran
+                    </p>
+
+                    <h3 id="reportExpense">
+                        Rp 0
+                    </h3>
+                    <small id="reportExpenseChange" class="report-change">Belum tersedia</small>
+
+                </div>
+
+
+                <!-- INVESTASI -->
+
+                <div class="report-card investment">
+
+                    <div class="report-card-icon">
+                        📈
+                    </div>
+
+                    <p>
+                        Nilai Portfolio Saat Ini
+                    </p>
+
+                    <h3 id="reportInvestment">
+                        Rp 0
+                    </h3>
+                    <small id="reportInvestmentChange" class="report-change">Belum tersedia</small>
+
+                </div>
+
+
+                <!-- CASH FLOW -->
+
+                <div class="report-card balance">
+
+                    <div class="report-card-icon">
+                        💰
+                    </div>
+
+                    <p>
+                        Cash Flow
+                    </p>
+
+                    <h3 id="reportBalance">
+                        Rp 0
+                    </h3>
+                    <small id="reportBalanceChange" class="report-change">Belum tersedia</small>
+
+                </div>
+
+
+            </div>
+
+            <div class="report-extra-summary"><div><small>Net Cash Flow</small><strong id="reportNetCashFlow">Rp 0</strong></div><div><small>Savings Rate</small><strong id="reportSavingsRate">Belum tersedia</strong></div></div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             CHART PENGELUARAN
+        ========================== -->
+
+        <section class="report-chart-card">
+
+
+            <div class="report-chart-header">
+
+                <h2>
+                    Pengeluaran
+                </h2>
+
+                <span>
+                    Berdasarkan kategori
+                </span>
+
+            </div>
+
+
+            <div class="report-chart-container">
+
+                <canvas
+                    id="expenseReportChart"
+                ></canvas>
+
+            </div>
+
+            <div id="expenseChartEmpty" class="report-empty-state" hidden>Belum ada pengeluaran pada periode ini.</div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             KATEGORI TERBESAR
+        ========================== -->
+
+        <section class="report-top-category">
+
+
+            <h2>
+                Kategori Terbesar
+            </h2>
+
+
+            <div id="topExpenseCategory">
+
+                Belum ada data.
+
+            </div>
+
+            <div id="expenseCategoryDetails" class="report-category-details"></div>
+
+
+        </section>
+
+        <section class="report-top-category report-comparison-section">
+            <h2>Perbandingan Pengeluaran</h2>
+            <p>Bandingkan kategori pada periode terpilih dengan periode sebelumnya.</p>
+            <div id="expenseComparison" class="report-comparison-list"></div>
+        </section>
+
+        <section class="report-portfolio-section">
+            <div class="report-chart-header"><div><h2>Portfolio Investasi</h2><span>Ringkasan aset investasi yang kamu miliki.</span></div></div>
+            <div id="portfolioEmptyState" class="report-empty-state" hidden>Belum ada aset investasi.<br>Tambahkan emas, saham, atau obligasi untuk melihat portfolio kamu di sini.</div>
+            <div id="portfolioContent">
+                <div class="portfolio-total"><small>Total Nilai Portfolio Saat Ini</small><strong id="portfolioTotalValue">Rp 0</strong><div id="portfolioProfitLoss"></div></div>
+                <div class="portfolio-allocation"><h3>Portfolio Allocation</h3><div class="portfolio-allocation-chart"><canvas id="portfolioAllocationChart"></canvas></div><div id="portfolioAllocationLegend" class="portfolio-allocation-legend"></div></div>
+                <div id="portfolioGroups" class="portfolio-groups"></div>
+            </div>
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MOBILE BOTTOM NAV
+    ====================================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <a href="index.html">
+
+            <span>
+                ⌂
+            </span>
+
+            Home
+
+        </a>
+
+
+        <a href="target.html">
+
+            <span>
+                🎯
+            </span>
+
+            Target
+
+        </a>
+
+
+        <a href="investment.html">
+
+            <span>
+                📈
+            </span>
+
+            Investasi
+
+        </a>
+
+
+        <a href="bank.html">
+
+            <span>
+                🏦
+            </span>
+
+            Bank
+
+        </a>
+
+
+        <a href="transaction.html">
+
+            <span>
+                ↕
+            </span>
+
+            Transaksi
+
+        </a>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     CHART JS
+====================================================== -->
+
+<script src="vendor/chart.umd.min.js"></script>
+
+<script src="vendor/jspdf.umd.min.js"></script>
+
+<script src="auth.js"></script>
+<script src="profile-ui.js"></script>
+<script src="market-price.js"></script>
+
+<script src="app.js"></script>
+
+<script>
+
+
+// ========================================
+// FORMAT RUPIAH
+// ========================================
+
+function formatRupiah(number) {
+
+    return new Intl.NumberFormat(
+        "id-ID",
+        {
+            style: "currency",
+            currency: "IDR",
+            maximumFractionDigits: 0
+        }
+    ).format(
+        Number(number) || 0
+    );
+
+}
+
+
+
+// ========================================
+// LOAD TRANSACTIONS
+// ========================================
+
+const reportTransactions =
+    typeof readStorageArray === "function" ? readStorageArray("budgetin_transactions") : [];
+
+const UNCATEGORIZED_VALUE = "__uncategorized";
+
+function populateReportCategories() {
+
+    const select = document.getElementById("reportCategory");
+    if (!select) return;
+
+    const items = typeof readStorageArray === "function" ? readStorageArray("budgetin_transactions") : reportTransactions;
+    const selectedValue = select.value;
+    const categories = [...new Set(
+        items.map(transaction =>
+            transaction.category || UNCATEGORIZED_VALUE
+        )
+    )].sort((first, second) => first.localeCompare(second, "id"));
+
+    select.replaceChildren();
+
+    const allOption = document.createElement("option");
+    allOption.value = "";
+    allOption.textContent = "Semua kategori";
+    select.appendChild(allOption);
+
+    categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category === UNCATEGORIZED_VALUE
+            ? "Tanpa kategori"
+            : category;
+        select.appendChild(option);
+    });
+
+    select.value = categories.includes(selectedValue) ? selectedValue : "";
+}
+
+function matchesReportCategory(transaction, categoryFilter) {
+
+    return !categoryFilter ||
+        (transaction.category || UNCATEGORIZED_VALUE) === categoryFilter;
+}
+
+
+
+// ========================================
+// CHART
+// ========================================
+
+const expenseChartCanvas = document.getElementById("expenseReportChart");
+window.expenseChart = expenseChartCanvas ? new Chart(
+    expenseChartCanvas,
+    {
+        type: "doughnut",
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    data: [],
+                    backgroundColor: [
+                        "#e85d4a",
+                        "#e9a23b",
+                        "#36a576",
+                        "#5684d6",
+                        "#8c6bd1",
+                        "#de6eaa",
+                        "#6b859d"
+                    ],
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "62%",
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        padding: 15,
+                        usePointStyle: true,
+                        font: {
+                            size: 11
+                        }
+                    }
+                }
+            }
+        }
+    }
+) : null;
+
+const expenseChart = window.expenseChart;
+
+// ========================================
+// UPDATE REPORT
+// ========================================
+
+function updateReport() {
+
+    if (window.BudgetinReportAnalytics && typeof window.BudgetinReportAnalytics.update === "function") {
+        window.BudgetinReportAnalytics.update();
+        return;
+    }
+
+    const monthValue = document.getElementById("reportMonth")?.value;
+    const categoryFilter = document.getElementById("reportCategory")?.value;
+    const now = new Date();
+    let start, end;
+
+    if (monthValue && monthValue.includes("-")) {
+        const [y, m] = monthValue.split("-").map(Number);
+        start = new Date(y, m - 1, 1);
+        end = new Date(y, m, 0);
+    } else {
+        start = new Date(now.getFullYear(), now.getMonth(), 1);
+        end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    }
+
+    const summary = window.BudgetinCashFlow ? window.BudgetinCashFlow.calculatePeriod({
+        start,
+        end,
+        category: categoryFilter
+    }) : { income: 0, expense: 0, investmentBuy: 0, investmentSell: 0, netCashFlow: 0, categories: {} };
+
+    const investments = typeof readStorageArray === "function" ? readStorageArray("budgetin_investments") : [];
+    const portfolioVal = investments.reduce((sum, item) => {
+        return sum + (window.BudgetinMarket?.calculateCurrentValue ? window.BudgetinMarket.calculateCurrentValue(item) : (Number(item.quantity) || 0) * (Number(item.buyPrice) || 0));
+    }, 0);
+
+    const incomeEl = document.getElementById("reportIncome");
+    const expenseEl = document.getElementById("reportExpense");
+    const investmentEl = document.getElementById("reportInvestment");
+    const balanceEl = document.getElementById("reportBalance");
+
+    if (incomeEl) incomeEl.textContent = formatRupiah(summary.income);
+    if (expenseEl) expenseEl.textContent = formatRupiah(summary.expense);
+    if (investmentEl) investmentEl.textContent = formatRupiah(portfolioVal);
+    if (balanceEl) balanceEl.textContent = formatRupiah(summary.netCashFlow);
+
+    // ====================================
+    // KATEGORI PENGELUARAN & CHART UPDATE
+    // ====================================
+
+    const categories = summary.categories || {};
+    const labels = Object.keys(categories);
+    const amounts = Object.values(categories);
+    const emptyEl = document.getElementById("expenseChartEmpty");
+    const chart = window.expenseChart || (typeof expenseChart !== "undefined" ? expenseChart : null);
+
+    if (emptyEl) emptyEl.hidden = amounts.length > 0;
+    if (expenseChartCanvas && expenseChartCanvas.parentElement) {
+        expenseChartCanvas.parentElement.hidden = amounts.length === 0;
+    }
+
+    if (chart) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = amounts;
+        chart.update();
+    }
+
+    // ====================================
+    // KATEGORI TERBESAR
+    // ====================================
+
+    let topCategory = "-";
+    let topAmount = 0;
+
+    Object.keys(categories).forEach(cat => {
+        if (categories[cat] > topAmount) {
+            topCategory = cat;
+            topAmount = categories[cat];
+        }
+    });
+
+    const topCategoryEl = document.getElementById("topExpenseCategory");
+    if (topCategoryEl) {
+        topCategoryEl.textContent = topCategory === "-"
+            ? "Belum ada data."
+            : `${topCategory} • ${formatRupiah(topAmount)}`;
+    }
+}
+
+
+// ========================================
+// DOWNLOAD LAPORAN PDF
+// ========================================
+
+function getReportData(monthValue, categoryFilter) {
+
+    const activeRange = window.BudgetinReportAnalytics?.getCurrentRange
+        ? window.BudgetinReportAnalytics.getCurrentRange()
+        : null;
+
+    let start, end;
+    if (activeRange && activeRange.start && activeRange.end) {
+        start = activeRange.start;
+        end = activeRange.end;
+    } else if (typeof monthValue === "string" && monthValue.includes("-")) {
+        const [year, month] = monthValue.split("-").map(Number);
+        start = new Date(year, month - 1, 1);
+        end = new Date(year, month, 0);
+    } else {
+        const now = new Date();
+        start = new Date(now.getFullYear(), now.getMonth(), 1);
+        end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    }
+
+    const filterCat = typeof categoryFilter === "string"
+        ? categoryFilter
+        : (document.getElementById("reportCategory")?.value || "");
+
+    const summary = window.BudgetinCashFlow ? window.BudgetinCashFlow.calculatePeriod({
+        start,
+        end,
+        category: filterCat
+    }) : { income: 0, expense: 0, investmentBuy: 0, investmentSell: 0, netCashFlow: 0, transactions: [] };
+
+    const sortedTransactions = [...(summary.transactions || [])].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    return {
+        income: summary.income,
+        expense: summary.expense,
+        investmentBuy: summary.investmentBuy,
+        investmentSell: summary.investmentSell,
+        investment: summary.investmentBuy,
+        cashFlow: summary.netCashFlow,
+        netCashFlow: summary.netCashFlow,
+        transactions: sortedTransactions,
+        start,
+        end
+    };
+}
+
+function downloadReportPdf() {
+
+    if (!window.jspdf) {
+        alert("Library PDF belum termuat. Periksa koneksi internet lalu coba lagi.");
+        return;
+    }
+
+    const categoryFilter = document.getElementById("reportCategory")?.value || "";
+    const categoryLabel = categoryFilter === UNCATEGORIZED_VALUE
+        ? "Tanpa kategori"
+        : categoryFilter || "Semua kategori";
+
+    const report = getReportData(null, categoryFilter);
+
+    const start = report.start;
+    const end = report.end;
+    let period = "";
+    let fileSuffix = "";
+
+    if (start && end) {
+        if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth() && start.getDate() === 1 && end.getDate() >= 28) {
+            period = start.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+            fileSuffix = `${start.getFullYear()}-${String(start.getMonth() + 1).padStart(2, "0")}`;
+        } else {
+            const fmt = { day: "2-digit", month: "short", year: "numeric" };
+            period = `${start.toLocaleDateString("id-ID", fmt)} - ${end.toLocaleDateString("id-ID", fmt)}`;
+            fileSuffix = `${start.getFullYear()}${String(start.getMonth() + 1).padStart(2, "0")}${String(start.getDate()).padStart(2, "0")}_${end.getFullYear()}${String(end.getMonth() + 1).padStart(2, "0")}${String(end.getDate()).padStart(2, "0")}`;
+        }
+    } else {
+        period = new Date().toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+        fileSuffix = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, "0")}`;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: "mm", format: "a4" });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 16;
+    let y = 18;
+
+    pdf.setFillColor(17, 24, 39);
+    pdf.rect(0, 0, pageWidth, 34, "F");
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(20);
+    pdf.text("Budgetin", margin, 17);
+    pdf.setFontSize(11);
+    pdf.setFont("helvetica", "normal");
+    pdf.text("Laporan Keuangan", margin, 25);
+
+    y = 46;
+    pdf.setTextColor(17, 24, 39);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(13);
+    pdf.text(`Periode: ${period}`, margin, y);
+    y += 7;
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.text(`Kategori: ${categoryLabel}`, margin, y);
+
+    y += 12;
+    const summary = [
+        ["Pemasukan", report.income],
+        ["Pengeluaran", report.expense]
+    ];
+    if (report.investmentBuy > 0) {
+        summary.push(["Pembelian Investasi", report.investmentBuy]);
+    }
+    if (report.investmentSell > 0) {
+        summary.push(["Penjualan Investasi", report.investmentSell]);
+    }
+    if (report.investmentBuy === 0 && report.investmentSell === 0) {
+        summary.push(["Investasi", 0]);
+    }
+    summary.push(["Cash Flow", report.netCashFlow]);
+
+    summary.forEach(([label, amount]) => {
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(10);
+        pdf.text(String(label), margin, y);
+        pdf.setFont("helvetica", "bold");
+        pdf.text(formatRupiah(amount), pageWidth - margin, y, { align: "right" });
+        y += 8;
+    });
+
+    y += 6;
+    pdf.setDrawColor(209, 213, 219);
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 10;
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(13);
+    pdf.text("Rincian Transaksi", margin, y);
+    y += 8;
+
+    if (!report.transactions.length) {
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(10);
+        pdf.text("Belum ada transaksi pada periode ini.", margin, y);
+    }
+
+    report.transactions.forEach(transaction => {
+        const date = new Date(transaction.date)
+            .toLocaleDateString("id-ID", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+        const type = transaction.isInvestment
+            ? (transaction.type === "sell" ? "Investasi (Jual)" : "Investasi (Beli)")
+            : transaction.type === "income"
+                ? "Pemasukan"
+                : transaction.type === "expense"
+                    ? "Pengeluaran"
+                    : "Investasi";
+        const title = String(transaction.description || transaction.asset || transaction.category || type);
+        const details = `${date} • ${type}${transaction.category && !transaction.isInvestment ? ` • ${transaction.category}` : ""}`;
+
+        if (y > pageHeight - 24) {
+            pdf.addPage();
+            y = 18;
+        }
+
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(10);
+        pdf.text(pdf.splitTextToSize(title, 110), margin, y);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(8.5);
+        y += 5;
+        pdf.setTextColor(75, 85, 99);
+        pdf.text(pdf.splitTextToSize(details, 110), margin, y);
+        pdf.setTextColor(17, 24, 39);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(9.5);
+        pdf.text(formatRupiah(transaction.amount), pageWidth - margin, y - 5, { align: "right" });
+        y += 8;
+    });
+
+    const filename = `Laporan_Budgetin_${fileSuffix}.pdf`;
+    pdf.setProperties({ title: `Laporan Budgetin ${period}` });
+
+    if (window.BudgetinNative && typeof window.BudgetinNative.savePdf === "function") {
+        window.BudgetinNative.savePdf(filename, pdf.output("datauristring"));
+        return;
+    }
+
+    pdf.save(filename);
+}
+
+
+
+// ========================================
+// GANTI BULAN
+// ========================================
+
+document
+    .getElementById("reportMonth")
+    .addEventListener(
+        "change",
+        updateReport
+    );
+
+document
+    .getElementById("reportCategory")
+    .addEventListener("change", updateReport);
+
+document
+    .getElementById("downloadReportPdf")
+    .addEventListener("click", downloadReportPdf);
+
+
+
+// ========================================
+// OTOMATIS PILIH BULAN SEKARANG
+// ========================================
+
+const now =
+    new Date();
+
+
+document.getElementById(
+    "reportMonth"
+).value =
+
+    now.getFullYear() +
+    "-" +
+    String(
+        now.getMonth() + 1
+    ).padStart(
+        2,
+        "0"
+    );
+
+
+
+// ========================================
+// JALANKAN
+// ========================================
+
+populateReportCategories();
+updateReport();
+
+
+</script>
+
+<script src="report-analytics.js"></script>
+<script src="report-portfolio.js"></script>
+
+
+</body>
+
+</html>
