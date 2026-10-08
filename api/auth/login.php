@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/auth_helper.php';
+require_once __DIR__ . '/../telegram/telegram_helper.php';
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
 header('Access-Control-Allow-Origin: ' . $origin);
@@ -116,6 +117,19 @@ try {
 
     // 8. Generate CSRF Token for state mutations (Section 11)
     $csrfToken = generateCsrfToken((string)$user['id'], $rawToken);
+
+    // 8.5 Trigger Telegram Notification
+    try {
+        $loginTime = date('d M Y, H:i:s');
+        $msg = "🚨 <b>Security Alert: Login Detected</b>\n\n";
+        $msg .= "Akun <b>{$user['name']}</b> baru saja login ke Budgetin.\n";
+        $msg .= "🌐 IP Address: {$clientIp}\n";
+        $msg .= "🕒 Waktu: {$loginTime}\n\n";
+        $msg .= "<i>Jika ini bukan Anda, segera amankan akun Anda!</i>";
+        TelegramService::sendToUser($pdo, (string)$user['id'], $msg);
+    } catch (Throwable $e) {
+        error_log('[BUDGETIN TELEGRAM ERROR] ' . $e->getMessage());
+    }
 
     // 9. Sanitized Response (Zero password/hash exposure)
     sendJsonResponse([
